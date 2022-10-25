@@ -22,8 +22,8 @@ export default function Logo(props) {
       <mesh
         castShadow
         geometry={nodes.path91001.geometry}
-        position={[2, 0, 11.45]}
-        rotation={[0, Math.PI / 2, Math.PI / 2]}
+        position={[-0.1, 0.1, 12.85]}
+        rotation={[Math.PI / 2, 0, 0.01]}
         scale={[16.94, 1, 16.94]}>
         <MeshRefractionMaterial
           uSceneTex={fbo.texture}
