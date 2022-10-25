@@ -21,6 +21,6 @@ createRoot(document.getElementById('root')).render(
   <>
     <App />
     <Overlay />
-    <img src={Logo} style={{ position: 'absolute', bottom: 40, left: 40, width: 30 }} />
+    <img src={Logo} style={{ position: 'absolute', bottom: 34, left: 34, width: 45 }} />
   </>
 )
