@@ -14,7 +14,6 @@ export default function App() {
       <group position={[0, -1, 0]}>
         <LogoMat makeDefault
           camera={[0, 17.5, 17.5]}
-          translateX={Math.PI / 2}
         />
         {/* <Text position={[0, 0, 2.25]} camera={[0, 17.5, 17.5]}>
           W
