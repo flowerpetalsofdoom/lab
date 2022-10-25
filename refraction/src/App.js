@@ -4,18 +4,24 @@ import { Instances, Instance, AccumulativeShadows, RandomizedLight, OrbitControl
 import { RGBELoader } from 'three-stdlib'
 import { MeshRefractionMaterial } from './shaders/MeshRefractionMaterial.tsx'
 
+import Logo from './Logo'
+
 export default function App() {
   return (
     <Canvas shadows camera={{ fov: 30, position: [5, 17, 17] }}>
       <color attach="background" args={['#f2f2f5']} />
       <fog attach="fog" args={['#f2f2f5', 35, 50]} />
       <group position={[0, -1, 0]}>
-        <Text makeDefault position={[0, 0, 2.25]} camera={[0, 17.5, 17.5]}>
+        <LogoMat makeDefault
+          camera={[0, 17.5, 17.5]}
+          translateX={Math.PI / 2}
+        />
+        {/* <Text position={[0, 0, 2.25]} camera={[0, 17.5, 17.5]}>
           W
-        </Text>
-        <Text position={[0, 0, -2.25]} camera={[0, 17.5, 17.5]}>
+        </Text> */}
+        {/* <Text position={[0, 0, -2.25]} camera={[0, 17.5, 17.5]}>
           FL RS
-        </Text>
+        </Text> */}
         <Grid />
         <Shadows />
       </group>
@@ -50,41 +56,52 @@ function Grid({ number = 23, lineWidth = 0.025, height = 0.5 }) {
   )
 }
 
-function Text({ children, camera, makeDefault, ...props }) {
+// function Text({ children, camera, makeDefault, ...props }) {
+//   const ref = useRef()
+//   const fbo = useFBO(1024)
+//   const texture = useLoader(RGBELoader, 'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/decor_shop_1k.hdr')
+//   useFrame((state) => {
+//     ref.current.visible = false
+//     state.gl.setRenderTarget(fbo)
+//     state.scene.background = texture
+//     state.gl.render(state.scene, state.camera)
+//     state.scene.background = null
+//     state.gl.setRenderTarget(null)
+//     ref.current.visible = true
+//   })
+//   return (
+//     <Center ref={ref} top {...props}>
+//       <Text3D
+//         castShadow
+//         bevelEnabled
+//         scale={5}
+//         height={0.25}
+//         bevelSize={0.01}
+//         bevelSegments={10}
+//         curveSegments={128}
+//         bevelThickness={0.01}
+//         font="/Inter_Bold.json">
+//         {children}
+//         <MeshRefractionMaterial
+//           uSceneTex={fbo.texture}
+//           uRefractPower={1.0}
+//           uRefractNormal={0.85}
+//           uTransparent={0.35}
+//           uSat={1.03}
+//           uIntensity={2}
+//         />
+//       </Text3D>
+//     </Center>
+//   )
+// }
+
+function LogoMat({ camera, makeDefault, ...props }) {
   const ref = useRef()
-  const fbo = useFBO(1024)
-  const texture = useLoader(RGBELoader, 'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/decor_shop_1k.hdr')
-  useFrame((state) => {
-    ref.current.visible = false
-    state.gl.setRenderTarget(fbo)
-    state.scene.background = texture
-    state.gl.render(state.scene, state.camera)
-    state.scene.background = null
-    state.gl.setRenderTarget(null)
-    ref.current.visible = true
-  })
   return (
     <Center ref={ref} top {...props}>
-      <Text3D
-        castShadow
-        bevelEnabled
-        scale={5}
-        height={0.25}
-        bevelSize={0.01}
-        bevelSegments={10}
-        curveSegments={128}
-        bevelThickness={0.01}
-        font="/Inter_Bold.json">
-        {children}
-        <MeshRefractionMaterial
-          uSceneTex={fbo.texture}
-          uRefractPower={1.0}
-          uRefractNormal={0.85}
-          uTransparent={0.35}
-          uSat={1.03}
-          uIntensity={2}
-        />
-      </Text3D>
+      <Logo key={ref}
+        scale={2.2}>=
+      </Logo>
     </Center>
   )
 }
